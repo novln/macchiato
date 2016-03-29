@@ -27,6 +27,8 @@ func TestBooks(t *testing.T) {
 }
 ```
 
+![Example][example-img]
+
 ## Under the hood
 
 `RunSpecs` will run Ginkgo with `RunSpecsWithCustomReporters` by injecting a Macchiato's `Reporter`.
@@ -40,3 +42,4 @@ This is Free Software, released under the [`MIT License`](LICENSE).
 [godoc-url]: https://godoc.org/github.com/crowley-io/macchiato
 [godoc-img]: https://godoc.org/github.com/crowley-io/macchiato?status.svg
 [license-img]: https://img.shields.io/badge/license-MIT-blue.svg
+[example-img]: https://raw.githubusercontent.com/crowley-io/macchiato/master/example.jpg
