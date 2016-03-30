@@ -6,6 +6,10 @@ A mocha inspired reporter for [Ginkgo](https://onsi.github.io/ginkgo/)
 
 [![Macchiato][macchiato-img]][macchiato-url]
 
+## Example
+
+![Example][example-img]
+
 ## Usage
 
 In your Ginkgo Suite, you can import *Macchiato* and use it as follows:
@@ -27,11 +31,9 @@ func TestBooks(t *testing.T) {
 }
 ```
 
-![Example][example-img]
-
 ## Under the hood
 
-`RunSpecs` will run Ginkgo with `RunSpecsWithCustomReporters` by injecting a Macchiato's `Reporter`.
+`macchiato.RunSpecs` will run **Ginkgo** with `RunSpecsWithCustomReporters` and the default Ginkgo's `Reporter`. However, the underlying `Stenographer` is replaced with a Macchiato implementation, which handle the rendering on the console output.
 
 ## License
 
