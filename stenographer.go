@@ -177,6 +177,25 @@ func (s *Stenographer) resetIndexes() {
 	s.indexes = make(map[int]string)
 }
 
+func (s *Stenographer) hasIndex(index int, text string) bool {
+	l, ok := s.indexes[index]
+	return ok && l == text
+}
+
+func (s *Stenographer) setIndex(index int, text string) {
+
+	// Update indexes with new entry.
+	s.indexes[index] = text
+
+	// Delete trailing entries, if any...
+	offset := 1
+	l := len(s.indexes)
+
+	for i := index; i < l; i++ {
+		delete(s.indexes, (i + offset))
+	}
+}
+
 func (s *Stenographer) renderLines(spec *types.SpecSummary, verbose bool, render func(space, text string)) {
 
 	s.lock.Lock()
@@ -195,10 +214,10 @@ func (s *Stenographer) renderLines(spec *types.SpecSummary, verbose bool, render
 		text := spec.ComponentTexts[i]
 		location := spec.ComponentCodeLocations[i].String()
 
-		if l, ok := s.indexes[i]; (ok && l != text) || !ok {
+		if !s.hasIndex(i, text) {
 
 			space := getSpace(i - startIndex)
-			s.indexes[i] = text
+			s.setIndex(i, text)
 
 			if i == length {
 				render(space, text)
