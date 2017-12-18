@@ -34,7 +34,12 @@ func (s *Stenographer) AnnounceAggregatedParallelRun(nodes int, quiet bool) {
 }
 
 // AnnounceParallelRun will do nothing.
-func (s *Stenographer) AnnounceParallelRun(node int, nodes int, specsToRun int, totalSpecs int, quiet bool) {
+func (s *Stenographer) AnnounceParallelRun(node int, nodes int, succinct bool) {
+	// Ignore rendering.
+}
+
+// AnnounceTotalNumberOfSpecs will do nothing.
+func (s *Stenographer) AnnounceTotalNumberOfSpecs(total int, succinct bool) {
 	// Ignore rendering.
 }
 
@@ -135,7 +140,7 @@ func (s *Stenographer) AnnounceSpecTimedOut(spec *types.SpecSummary, quiet bool,
 // AnnounceSpecPanicked will print the stack of the spec with its status.
 func (s *Stenographer) AnnounceSpecPanicked(spec *types.SpecSummary, quiet bool, fullTrace bool) {
 	s.renderLines(spec, false, func(space, text string) {
-		renderLineWithContext(space, rbf(Icons.failed), rf(text), rbf("(panic)"))
+		renderLineWithContext(space, rbf(Icons.panicked), rf(text), rbf("(panic)"))
 	})
 }
 
