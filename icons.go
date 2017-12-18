@@ -15,6 +15,7 @@ type SpecsIcons struct {
 	failed  string
 	pending string
 	skipped string
+	panicked string
 }
 
 func newSpecsIcons() SpecsIcons {
@@ -25,6 +26,7 @@ func newSpecsIcons() SpecsIcons {
 			failed:  " ",
 			pending: " ",
 			skipped: " ",
+			panicked: " ",
 		}
 	}
 
@@ -33,5 +35,6 @@ func newSpecsIcons() SpecsIcons {
 		failed:  `✘`,
 		pending: `❗`,
 		skipped: `✱`,
+		panicked: `💀`,
 	}
 }
