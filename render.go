@@ -1,11 +1,11 @@
 package macchiato
 
 import (
+	"bufio"
 	"fmt"
 	"strings"
 
 	"github.com/onsi/ginkgo/types"
-	"bufio"
 )
 
 func getSpace(level int) string {
@@ -77,7 +77,7 @@ func renderPanickedSpecContext(space, text string, failure types.SpecFailure) {
 	renderNewLine()
 	scanner := bufio.NewScanner(strings.NewReader(failure.Location.FullStackTrace))
 	for scanner.Scan() {
-		renderText(space, strings.Replace(scanner.Text(), "\t", "    ", 1))
+		renderText(space, strings.Replace(scanner.Text(), "\t", "  ", 1))
 	}
 	renderNewLine()
 	renderTextWithoutSpace(rf(failure.Message))
