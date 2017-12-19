@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/onsi/ginkgo/types"
+	"bufio"
 )
 
 func getSpace(level int) string {
@@ -63,6 +64,21 @@ func renderFailedSpecHeader() {
 func renderFailedSpecContext(space, text string, failure types.SpecFailure) {
 	renderLine(space, rbf(Icons.failed), rf(text))
 	renderText(space, gf(failure.Location.String()))
+	renderNewLine()
+	renderTextWithoutSpace(rf(failure.Message))
+	if failure.ForwardedPanic != "" {
+		renderTextWithoutSpace(rf(failure.ForwardedPanic))
+	}
+	renderNewLine()
+}
+
+func renderPanickedSpecContext(space, text string, failure types.SpecFailure) {
+	renderLine(space, rbf(Icons.panicked), rf(text))
+	renderNewLine()
+	scanner := bufio.NewScanner(strings.NewReader(failure.Location.FullStackTrace))
+	for scanner.Scan() {
+		renderText(space, strings.Replace(scanner.Text(), "\t", "    ", 1))
+	}
 	renderNewLine()
 	renderTextWithoutSpace(rf(failure.Message))
 	if failure.ForwardedPanic != "" {
