@@ -121,3 +121,12 @@ func renderSuiteFailure(name string, summary *types.SetupSummary) {
 	renderNewLine()
 	renderFailedSpecContext(getSpace(0), fmt.Sprintf("An error has occurred with %s.", name), summary.Failure)
 }
+
+func renderCaptureOutput(space, output string) {
+	if output != "" {
+		renderNewLine()
+		renderText(space, bf("Test output:"))
+		renderText("", output)
+		renderNewLine()
+	}
+}
