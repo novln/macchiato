@@ -173,10 +173,12 @@ func (s *Stenographer) SummarizeFailures(summaries []*types.SpecSummary) {
 		if summary.Panicked() {
 			s.renderLines(summary, false, func(space, text string) {
 				renderPanickedSpecContext(space, text, summary.Failure)
+				renderCaptureOutput(space, summary.CapturedOutput)
 			})
 		} else if summary.HasFailureState() {
 			s.renderLines(summary, false, func(space, text string) {
 				renderFailedSpecContext(space, text, summary.Failure)
+				renderCaptureOutput(space, summary.CapturedOutput)
 			})
 		}
 	}
