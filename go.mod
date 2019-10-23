@@ -1,4 +1,4 @@
-module github.com/jamillosantos/macchiato
+module github.com/novln/macchiato
 
 go 1.12
 
