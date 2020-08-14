@@ -96,22 +96,22 @@ func (s *Stenographer) AnnounceCapturedOutput(output string) {
 	// Ignore rendering.
 }
 
-// AnnounceSuccesfulSpec will print the stack of the spec with its status.
-func (s *Stenographer) AnnounceSuccesfulSpec(spec *types.SpecSummary) {
+// AnnounceSuccessfulSpec will print the stack of the spec with its status.
+func (s *Stenographer) AnnounceSuccessfulSpec(spec *types.SpecSummary) {
 	s.renderLines(spec, false, func(space, text string) {
 		renderLine(space, sbf(Icons.passed), gf(text))
 	})
 }
 
-// AnnounceSuccesfulSlowSpec will print the stack of the spec with its status.
-func (s *Stenographer) AnnounceSuccesfulSlowSpec(spec *types.SpecSummary, quiet bool) {
+// AnnounceSuccessfulSlowSpec will print the stack of the spec with its status.
+func (s *Stenographer) AnnounceSuccessfulSlowSpec(spec *types.SpecSummary, quiet bool) {
 	s.renderLines(spec, false, func(space, text string) {
 		renderLineWithContext(space, sbf(Icons.passed), gf(text), wf("(%.3f secs)", spec.RunTime.Seconds()))
 	})
 }
 
-// AnnounceSuccesfulMeasurement will print the stack of the benchmark with its measurements.
-func (s *Stenographer) AnnounceSuccesfulMeasurement(spec *types.SpecSummary, quiet bool) {
+// AnnounceSuccessfulMeasurement will print the stack of the benchmark with its measurements.
+func (s *Stenographer) AnnounceSuccessfulMeasurement(spec *types.SpecSummary, quiet bool) {
 	s.renderLines(spec, false, func(space, text string) {
 		renderLine(space, sbf(Icons.passed), gf(text))
 		renderMeasurementContext(space, spec)
